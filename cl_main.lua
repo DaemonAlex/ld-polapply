@@ -29,7 +29,7 @@ RegisterNetEvent('ld-polapply:openApply', function()
             {value = 'Yes', label = 'Yes'},
             {value = 'No', label = 'No'}
         }, required = true},
-        {type = 'textarea', label = 'Why you want to become a police officer?', required = true},
+        {type = 'textarea', label = 'Why you want to become a police officer?', required = true, min = 10, max = 300},
         {type = 'input', label = 'Discord:', required = true},
       })
 
