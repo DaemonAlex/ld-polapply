@@ -4,7 +4,7 @@
 ---
 
  ### [Dependencies]: <br>
-* [ox_lib](https://github.com/overextended/ox_lib)
+* [ox_lib](https://github.com/overextended/ox_lib) or [qb-target](https://github.com/qbcore-framework/qb-target)
 * [ox_target](https://github.com/overextended/ox_target)
 
  ### [Preview]: <br>
