@@ -1,18 +1,40 @@
 CreateThread(function()
-    exports.ox_target:addBoxZone({
-    	name = "police zone",
-    	coords = vec3(Config.Coords.x, Config.Coords.y, Config.Coords.z-1),
-    	size = vec3(2, 0.9, 6),
-    	rotation = 0.0,
-        options = {
-            {
-                name = 'pol_apply',
-                event = 'ld-polapply:openApply',
-                icon = 'fa-solid fa-shield',
-                label = 'Application for Police',
-            }
-        }
-    })
+    for k, v in pairs(Config.Coords) do
+        if Config.Target == 'OX' then
+            exports.ox_target:addBoxZone({
+            	name = v.name,
+            	coords = vec3(v.coords.x, v.coords.y, v.coords.z-1),
+            	size = vec3(2, 0.9, 6),
+            	rotation = 0.0,
+                options = {
+                    {
+                        name = 'pol_apply',
+                        event = 'ld-polapply:openApply',
+                        icon = 'fa-solid fa-shield',
+                        label = Config.TargetLabel,
+                    }
+                }
+            })
+        elseif Config.Target == 'QB' then
+            exports['qb-target']:AddBoxZone(v.name, vector3(v.coords.x, v.coords.y, v.coords.z-2), 2, 0.9, {
+                name = v.name,
+                heading = v.coords.w,
+                debugPoly = false,
+                minZ = v.coords.z-1,
+                maxZ = v.coords.z+1,
+            }, {
+                options = {
+                    {
+                        name = 'pol_apply',
+                        event = 'ld-polapply:openApply',
+                        icon = 'fa-solid fa-shield',
+                        label = Config.TargetLabel,
+                    }
+                },
+                distance = 1
+            })
+        end
+    end
 end)
 
 RegisterNetEvent('ld-polapply:openApply', function()
