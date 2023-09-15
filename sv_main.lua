@@ -1,8 +1,23 @@
+local function getPolApply(pedCoords)
+    local distance = #(pedCoords - Config.Coords[1].coords)
+    local closest = 1
+    for i = 1, #Config.Coords do
+        local hall = Config.Coords[i]
+        local dist = #(pedCoords - hall.coords)
+        if dist < distance then
+            distance = dist
+            closest = i
+        end
+    end
+    return closest
+end
+
 RegisterServerEvent('ld-polapply:sendApply', function(input)
     local src = source
     local ped = GetPlayerPed(src)
     local pedCoords = GetEntityCoords(ped)
-    local applyCoords = Config.Coords
+    local closestPolApply = getPolApply(pedCoords)
+    local applyCoords = Config.Coords[closestPolApply].coords
     if #(pedCoords - applyCoords) >= 20.0 then
         return DropPlayer(src, "Attempted exploit abuse")
     end
